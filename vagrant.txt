@@ -1,0 +1,3 @@
+Commands
+vagrant reload | Restarts the VM, changes on the VM still persist
+vagrant suspend | Suspends the VM

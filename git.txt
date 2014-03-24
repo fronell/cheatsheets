@@ -1,0 +1,30 @@
+# Add all changes to index
+git add .
+
+# Create a commit
+git commit -m "Initial commit"
+
+# Push to origin
+git push -u origin master
+
+# Removes directories and files (use when having discard changes errors)
+git clean -df
+
+# If git clean doesn't work, this is the next step
+git rm -rf *
+
+# Discard all changes and reset to a specific commit
+git reset --hard 0d1d7fc32
+
+[====Creating a stash====]
+# Add all the changes
+git add .
+
+# Create the stash
+git stash
+
+# And boom! You’re back to your original working state. Got that bug fixed? Bring your work back with:
+git stash apply
+
+# Prune remote branches that have been removed from the local db
+git remote prune origin
