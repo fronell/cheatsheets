@@ -88,6 +88,7 @@ ctrl-b      - Scroll back one page
 ## Shell Commands  
 :r !date		    - Reads command into file  
 :!<command>		  - Executes <command>  
+:!<command> %	  - Executes <command> using contents of buffer i.e. !ruby %
 :r <filename|!> - Pastes <filename|command> below cursor position  
   
 ## Tags  
@@ -102,16 +103,23 @@ ctrl-b      - Scroll back one page
 ^W},:pt t - preview tag under cursor, tag t  
 ^W]       - split window and show tag under cursor  
 ^Wz,:pc   - close tag preview window  
+
+## Omnicompletion
+CTRL-X CTRL-O - Autocomplete  
+CTRL-N        - Next  
+CTRL-P        - Previous  
+CTRL-Y        - Accept  
   
 # PLUGINS  
-## ctrl-p  
-Run :CtrlP or :CtrlP [starting-directory] to invoke CtrlP in find file mode.  
-Run :CtrlPBuffer or :CtrlPMRU to invoke CtrlP in find buffer or find MRU file mode.  
-Run :CtrlPMixed to search in Files, Buffers and MRU files at the same time.  
-Check :help ctrlp-commands and :help ctrlp-extensions for other commands.  
+## ctrl-p modes
+:CtrlP or :CtrlP dir   - invoke CtrlP in find file mode.
+:CtrlPBuffer           - Open in buffer mode
+:CtrlPMRU              - Open in MRU mode
+:CtrlPMixed            - Search everything
+:help ctrlp-commands   - Help on commands
+:help ctrlp-extensions - Help on extensions
   
-Once CtrlP is open:  
-  
+### ctrl-p commands
 Press <F5> to purge the cache for the current directory to get new files, remove deleted files and apply new ignore options.  
 Press <c-f> and <c-b> to cycle between modes.  
 Press <c-d> to switch to filename only search instead of full path.  
@@ -127,9 +135,3 @@ Submit two or more dots .. to go up the directory tree by one or multiple levels
 End the input string with a colon : followed by a command to execute it on the opening file(s):  
 Use :25 to jump to line 25.  
 Use :diffthis when opening multiple files to run :diffthis on the first 4 files.  
-  
-## vim-ruby  
-CTRL-X CTRL-O - Autocomplete  
-CTRL-N - Next  
-CTRL-P - Previous  
-CTRL-Y - Accept  

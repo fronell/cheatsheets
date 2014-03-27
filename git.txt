@@ -30,6 +30,10 @@ git pull origin master
 # Update all submodules
 git submodule foreach git pull origin master
 
+# Remove a submodule
+git submodule deinit asubmodule
+git rm asubmodule
+
 [==== Creating a stash ====]
 # Add all the changes
 git add .
