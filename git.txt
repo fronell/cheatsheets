@@ -16,7 +16,21 @@ git rm -rf *
 # Discard all changes and reset to a specific commit
 git reset --hard 0d1d7fc32
 
-[====Creating a stash====]
+[==== Submodules ====]
+# Add a submodule, do a git add/commit after to add it to the repo
+git submodule add repo dest_dir
+git submodule add https://github.com/plasticboy/vim-markdown.git bundle/vim-markdown
+
+# Init and update a submodule after cloning
+git submodule update --init
+
+# To update a submodule, go into the local repo dir
+git pull origin master
+
+# Update all submodules
+git submodule foreach git pull origin master
+
+[==== Creating a stash ====]
 # Add all the changes
 git add .
 
