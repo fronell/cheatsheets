@@ -16,6 +16,9 @@ git rm -rf *
 # Discard all changes and reset to a specific commit
 git reset --hard 0d1d7fc32
 
+# Unstage all changes
+git reset --
+
 [==== Submodules ====]
 # Add a submodule, do a git add/commit after to add it to the repo
 git submodule add repo dest_dir
