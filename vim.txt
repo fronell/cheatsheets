@@ -1,19 +1,18 @@
-# VIM  
-## General  
+# General  
 :h - Bring up help    
   
-## Motions  
+# Motions  
 %	- Move to corresponding bracket    
 (	- Move cursor to the beginning of current sentence    
 ) - Move cursor to beginning of next sentence    
   
-## Searching  
+# Searching  
 ggn	   - Jump to first search results  
 GN     - Jump to last search result  
 CTRL-O - Go back to where you came from  
 CTRL-I - Goes forward  
   
-## Insert Commands  
+# Insert Commands  
 a - Append after cursor  
 A - Append after line  
 x - Delete character at cursor  
@@ -23,13 +22,13 @@ o - Opens line below cursor and starts in insert mode
 O - Opens line above cursor and starts in insert mode  
 I - Insert text at beginning of the line  
   
-## Buffers  
+# Buffers  
 :bn    - go to next buffer  
 :bp    - go to previous buffer  
 :bd    - delete a buffer (close a file)  
 :N,Mbd - Delete buffer range N-M  
   
-## Folding  
+# Folding  
 zi        - open/close all folds  
 za        - toggle current fold open/closed  
 zc        - close current fold  
@@ -49,7 +48,7 @@ zE        - Deletes all folds.
 [z        - Move to start of open fold.  
 ]z        - Move to end of open fold.  
   
-## Windows  
+# Windows  
 C-w s       - Show buffer in horizontally split windows  
 C-w v       - Show buffer in vertically split windows  
 C-w n       - Creates a new window in horizontal split with an empty buffer  
@@ -68,7 +67,7 @@ C-w -       - Decreate window height
 C-w >       - Increase window width  
 C-w <       - Decrease window width  
   
-## Movement Commands  
+# Movement Commands  
 ctrl-d      - Scroll down half a page  
 ctrl-u      - Scroll up half a page  
 ctrl-f      - Scroll forward one page  
@@ -81,17 +80,17 @@ ctrl-b      - Scroll back one page
 ]]          - Move to the beginning of next section  
 <line num>G - Move to <line num>  
   
-## Diffing Windows  
+# Diffing Windows  
 :windo diffthis - Diff open windows  
 :diffoff!       - Turn off diff  
   
-## Shell Commands  
+# Shell Commands  
 :r !date		    - Reads command into file  
 :!<command>		  - Executes <command>  
 :!<command> %	  - Executes <command> using contents of buffer i.e. !ruby %
 :r <filename|!> - Pastes <filename|command> below cursor position  
   
-## Tags  
+# Tags  
 :ta t     - jump to tag t  
 :nta      - jump to nth newer tag in list  
 ^],^T     - jump to the tag under cursor, return from tag  
@@ -104,14 +103,15 @@ ctrl-b      - Scroll back one page
 ^W]       - split window and show tag under cursor  
 ^Wz,:pc   - close tag preview window  
 
-## Omnicompletion
+# Omnicompletion
 CTRL-X CTRL-O - Autocomplete  
 CTRL-N        - Next  
 CTRL-P        - Previous  
 CTRL-Y        - Accept  
   
 # PLUGINS  
-## ctrl-p modes
+## ctrl-p
+### ctrl-p modes
 :CtrlP or :CtrlP dir   - invoke CtrlP in find file mode.
 :CtrlPBuffer           - Open in buffer mode
 :CtrlPMRU              - Open in MRU mode
@@ -133,7 +133,6 @@ Run :help ctrlp-mappings or submit ? in CtrlP for more mapping help.
   
 Submit two or more dots .. to go up the directory tree by one or multiple levels.  
 End the input string with a colon : followed by a command to execute it on the opening file(s):  
-Use :25 to jump to line 25.  
 Use :diffthis when opening multiple files to run :diffthis on the first 4 files.  
 
 ## NERDtree
