@@ -1,54 +1,73 @@
-# Add all changes to index
+# Committing
+## Add all changes to index
 git add .
 
-# Create a commit
+## Create a commit
 git commit -m "Initial commit"
 
-# Push to origin
+## Push to origin
 git push -u origin master
 
-# Removes directories and files (use when having discard changes errors)
-git clean -df
-
-# If git clean doesn't work, this is the next step
-git rm -rf *
-
-# Discard all changes and reset to a specific commit
-git reset --hard 0d1d7fc32
-
-# Unstage all changes
-git reset --
-
-# Checkout file from most recent commit
+# Checkout
+## Checkout file from most recent commit
 git checkout -- filename
 
-[==== Submodules ====]
-# Add a submodule, do a git add/commit after to add it to the repo
+# Branching
+## Create a new branch
+git branch <branch_name>
+
+## Checkout a branch
+git checkout <branch_name>
+
+## Create a new branch and check it out
+git checkout -b <branch_name>
+
+# Reverting Changes
+## Removes directories and files (use when having discard changes errors)
+git clean -df
+
+## If git clean doesn't work, this is the next step
+git rm -rf *
+
+## Discard all changes and reset to a specific commit
+git reset --hard 0d1d7fc32
+
+## Unstage all changes
+git reset --
+
+#Subtree
+## Add a subtree without adding the entire history of the sub project via squash
+(Must done at the top level of a _clean_ working directory)
+git subtree add --prefix vendor_cookbooks/yum https://github.com/opscode-cookbooks/yum master --squash
+
+#Submodules
+## Add a submodule, do a git add/commit after to add it to the repo
 git submodule add repo dest_dir
 git submodule add https://github.com/plasticboy/vim-markdown.git bundle/vim-markdown
 
-# Init and update a submodule after cloning
+## Init and update a submodule after cloning
 git submodule update --init
 
-# To update a submodule, go into the local repo dir
+## To update a submodule, go into the local repo dir
 git pull origin master
 
-# Update all submodules
+## Update all submodules
 git submodule foreach git pull origin master
 
-# Remove a submodule
+## Remove a submodule
 git submodule deinit asubmodule
 git rm asubmodule
 
-[==== Creating a stash ====]
-# Add all the changes
+# Stashes
+## Add all the changes
 git add .
 
-# Create the stash
+## Create the stash
 git stash
 
-# And boom! You’re back to your original working state. Got that bug fixed? Bring your work back with:
+## And boom! You’re back to your original working state. Got that bug fixed? Bring your work back with:
 git stash apply
 
-# Prune remote branches that have been removed from the local db
+# Deleting
+## Prune remote branches that have been removed from the local db
 git remote prune origin
