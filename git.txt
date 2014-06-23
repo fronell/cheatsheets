@@ -40,6 +40,11 @@ git reset --
 (Must done at the top level of a _clean_ working directory)
 git subtree add --prefix vendor_cookbooks/yum https://github.com/opscode-cookbooks/yum master --squash
 
+## Remove a subtree
+Since the subtree is treated as a merge commit, you just remove the directory
+the subtree was pulled down to like any other directory
+git rm -r <subtree_dir>
+
 #Submodules
 ## Add a submodule, do a git add/commit after to add it to the repo
 git submodule add repo dest_dir
