@@ -1,5 +1,10 @@
 # General  
 :h - Bring up help    
+
+# Misc
+:set ff=unix - Set format to unix, best method for removing ^M line endings
+,m - Old way of removing ^M line endings for dos files
+:pwd - Show current working directory
   
 # Motions  
 %	- Move to corresponding bracket    
@@ -103,14 +108,21 @@ ctrl-b      - Scroll back one page
 ^W]       - split window and show tag under cursor  
 ^Wz,:pc   - close tag preview window  
 
-# Omnicompletion
+# PLUGINS  
+## Omnicompletion
 CTRL-X CTRL-O - Autocomplete  
 CTRL-N        - Next  
 CTRL-P        - Previous  
 CTRL-Y        - Accept  
   
-# PLUGINS  
 ## ctrl-p
+### custom mappings
+,pb - buffer mode
+,pm - mru mode
+,pt - tag mode
+,pf - file mode
+,pp - mixed mode (everything)
+
 ### ctrl-p modes
 :CtrlP or :CtrlP dir   - invoke CtrlP in find file mode.
 :CtrlPBuffer           - Open in buffer mode
@@ -120,7 +132,7 @@ CTRL-Y        - Accept
 :help ctrlp-extensions - Help on extensions
   
 ### ctrl-p commands
-Press <F5> to purge the cache for the current directory to get new files, remove deleted files and apply new ignore options.  
+Press <F5> to purge/refresh the cache for the current directory to get new files, remove deleted files and apply new ignore options.  
 Press <c-f> and <c-b> to cycle between modes.  
 Press <c-d> to switch to filename only search instead of full path.  
 Press <c-r> to switch to regexp mode.  
