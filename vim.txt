@@ -3,8 +3,8 @@
 
 # Misc
 :set ff=unix - Set format to unix, best method for removing ^M line endings
-,m - Old way of removing ^M line endings for dos files
-:pwd - Show current working directory
+,m           - Old way of removing ^M line endings for dos files
+:pwd         - Show current working directory
   
 # Motions  
 %	- Move to corresponding bracket    
@@ -108,13 +108,21 @@ ctrl-b      - Scroll back one page
 ^W]       - split window and show tag under cursor  
 ^Wz,:pc   - close tag preview window  
 
-# PLUGINS  
-## Omnicompletion
+# Omnicompletion
 CTRL-X CTRL-O - Autocomplete  
 CTRL-N        - Next  
 CTRL-P        - Previous  
 CTRL-Y        - Accept  
   
+# PLUGINS  
+## vim-surround
+cs'"  - Use surround plugin to replace surrounding ' with "s
+ds'   - Delete ' delimiters
+### Could not get these to work, vim does not like the 's' after the 'y'
+ysiw{ - Wrap selected word in {} with space i.e. { word }
+ysiw} - Wrap selected word in {} with no space i.e. {word}
+yss)  - Wrap entire line in () with no space i.e (entire line of words)
+
 ## ctrl-p
 ### custom mappings
 ,pb - buffer mode
