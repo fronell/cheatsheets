@@ -40,6 +40,7 @@ I - Insert text at beginning of the line
 :bp    - go to previous buffer  
 :bd    - delete a buffer (close a file)  
 :N,Mbd - Delete buffer range N-M  
+:bw    - Wipeout a buffer
   
 # Folding  
 zi        - open/close all folds  
@@ -123,6 +124,9 @@ CTRL-P        - Previous
 CTRL-Y        - Accept  
   
 # PLUGINS  
+## fugitive
+Gblame - Opens a vertical split window with the blame info on the left
+
 ## nerdcommenter
 ,ci - Comment a line on/off (inverse commenting)
 

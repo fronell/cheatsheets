@@ -12,6 +12,12 @@ git push -u origin master
 ## Checkout file from most recent commit
 git checkout -- filename
 
+# Show a log of all the commits
+git log
+
+# Show who modified what and when in a file (so you can blame them!)
+git blame <file>
+
 # Branching
 ## Create a new branch
 git branch <branch_name>
