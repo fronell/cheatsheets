@@ -41,10 +41,16 @@ git reset --hard 0d1d7fc32
 ## Unstage all changes
 git reset --
 
+## Unstage a specific file
+git reset <file>
+
 #Subtree
 ## Add a subtree without adding the entire history of the sub project via squash
 (Must done at the top level of a _clean_ working directory)
 git subtree add --prefix vendor_cookbooks/yum https://github.com/opscode-cookbooks/yum master --squash
+
+## Update a subtree
+git subtree pull --prefix vendor_cookbooks/yum https://github.com/opscode-cookbooks/yum master --squash
 
 ## Remove a subtree
 Since the subtree is treated as a merge commit, you just remove the directory

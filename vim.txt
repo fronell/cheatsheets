@@ -5,6 +5,14 @@
 :set ff=unix - Set format to unix, best method for removing ^M line endings
 ,m           - Old way of removing ^M line endings for dos files
 :pwd         - Show current working directory
+
+# Visual Selection
+<from_line>GV<to_line>G - Visually select range
+<from_line>GV<count>j   - Visually select <count> lines down (j) <from_line>
+
+# Search and Replace
+:.,$s/\vBEFORE/AFTER/gc - Replace from current line to end of file
+:,$s/\vBEFORE/AFTER/gc - Shorter replace from current line to end of file 
   
 # Motions  
 %	- Move to corresponding bracket    
@@ -115,6 +123,9 @@ CTRL-P        - Previous
 CTRL-Y        - Accept  
   
 # PLUGINS  
+## nerdcommenter
+,ci - Comment a line on/off (inverse commenting)
+
 ## vim-surround
 cs'"  - Use surround plugin to replace surrounding ' with "s
 ds'   - Delete ' delimiters
