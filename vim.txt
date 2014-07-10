@@ -41,9 +41,34 @@ I - Insert text at beginning of the line
 :bd    - delete a buffer (close a file)  
 :N,Mbd - Delete buffer range N-M  
 :bw    - Wipeout a buffer
+
+# grep
+:vim /<pattern>/ <file/path/*> - grep for pattern in file/path
+
+# Indentation
+>>   - Indent line by shiftwidth spaces
+<<   - De-indent line by shiftwidth spaces
+5>>  - Indent 5 lines
+5==  - Re-indent 5 lines
+
+>%   - Increase indent of a braced or bracketed block (place cursor on brace first)
+=%   - Reindent a braced or bracketed block (cursor on brace)
+<%   - Decrease indent of a braced or bracketed block (cursor on brace)
+]p   - Paste text, aligning indentation with surroundings
+
+=i{  - Re-indent the 'inner block', i.e. the contents of the block
+=a{  - Re-indent 'a block', i.e. block and containing braces
+=2a{ - Re-indent '2 blocks', i.e. this block and containing block
+
+>i{  - Increase inner block indent
+<i{  - Decrease inner block indent
+
   
 # Folding  
 zi        - open/close all folds  
+zm        - Increases the foldlevel by one.  
+zr        - Decreases the foldlevel by one.  
+zfa}      - Fold block delimited by {}, works with (), [], <> also
 za        - toggle current fold open/closed  
 zc        - close current fold  
 zM        - close all folds  
@@ -54,8 +79,6 @@ zj        - Moves the cursor to the next fold.
 zk        - Moves the cursor to the previous fold.  
 zo        - Opens a fold at the cursor.  
 zO        - Opens all folds at the cursor.  
-zm        - Increases the foldlevel by one.  
-zr        - Decreases the foldlevel by one.  
 zR        - Decreases the foldlevel to zero -- all folds will be open.  
 zd        - Deletes the fold at the cursor.  
 zE        - Deletes all folds.  
@@ -128,11 +151,14 @@ CTRL-Y        - Accept
 Gblame - Opens a vertical split window with the blame info on the left
 
 ## nerdcommenter
-,ci - Comment a line on/off (inverse commenting)
+,ci         - Comment a line on/off (inverse commenting)
+<count>,ci  - Comment count lines on/off
+<visual>,ci - Comment lines in visual mode on/off
 
 ## vim-surround
 cs'"  - Use surround plugin to replace surrounding ' with "s
 ds'   - Delete ' delimiters
+csw)  - Use motion w to wrap word in () with no spaces
 ysiw{ - Wrap selected word in {} with space i.e. { word }
 ysiw} - Wrap selected word in {} with no space i.e. {word}
 yss)  - Wrap entire line in () with no space i.e (entire line of words)
