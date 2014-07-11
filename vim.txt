@@ -119,7 +119,18 @@ ctrl-b      - Scroll back one page
   
 # Diffing Windows  
 :windo diffthis - Diff open windows  
+]c              - Goto next change
+[c              - Goto previous change
 :diffoff!       - Turn off diff  
+:diffupdate     - Do this if diff doesn't reflect changes in the buffer(s)
+:do - Same as diffget (diffg) without range or buffer spec
+:dp - Same as diffput (diffpu) without range or buffer spec
+:[range]diffg [bufspec]   - Modify the current buffer to undo difference with another buffer
+                            If no range is given, the diff at the cursor position or just 
+                            above it is affected
+:[range]diffput [bufspec] - Modify another buffer to undo difference with the current buffer
+                            If no range is given, the diff at the cursor position or just 
+                            above it is affected
   
 # Shell Commands  
 :r !date		    - Reads command into file  
@@ -148,7 +159,12 @@ CTRL-Y        - Accept
   
 # PLUGINS  
 ## fugitive
-Gblame - Opens a vertical split window with the blame info on the left
+Gblame      - Opens a vertical split window with the blame info on the left
+Gdiff       - Compare working copy of file with the last commit
+Gstatus     - Bring up status window showing stage and unstaged changes
+              Press - to toggle moving files between staged and unstaged
+Glog [-<n>] - Bring up git log in seperate buffer with revisions in quickfix list
+              n represents the amount of previous revisions to load
 
 ## nerdcommenter
 ,ci         - Comment a line on/off (inverse commenting)
