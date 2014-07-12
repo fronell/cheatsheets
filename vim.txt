@@ -105,6 +105,8 @@ C-w >       - Increase window width
 C-w <       - Decrease window width  
   
 # Movement Commands  
+C-e         - Scroll down one line at a time
+C-y         - Scroll up one line at a time
 ctrl-d      - Scroll down half a page  
 ctrl-u      - Scroll up half a page  
 ctrl-f      - Scroll forward one page  
@@ -115,7 +117,10 @@ ctrl-b      - Scroll back one page
 }           - Move to the beginning of next paragraph  
 [[          - Move to the beginning of current section  
 ]]          - Move to the beginning of next section  
-<line num>G - Move to <line num>  
+<line num>G - Move to <line num>
+zz          - move current line to the middle of the screen
+zt          - move current line to the top of the screen
+zb          - move current line to the bottom of the screen
   
 # Diffing Windows  
 :windo diffthis - Diff open windows  
