@@ -10,6 +10,14 @@
 <from_line>GV<to_line>G - Visually select range
 <from_line>GV<count>j   - Visually select <count> lines down (j) <from_line>
 
+# Visually select Ruby text objects
+vir - Select inner-portion of ruby block
+var - Select entire ruby block
+vim - Select contents within current ruby method
+vam - Select contents around current ruby method
+viM - Select content within current ruby class
+vaM - Select content around current ruby class
+
 # Search and Replace
 :.,$s/\vBEFORE/AFTER/gc - Replace from current line to end of file
 :,$s/\vBEFORE/AFTER/gc - Shorter replace from current line to end of file 
