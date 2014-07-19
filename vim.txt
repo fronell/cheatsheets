@@ -19,9 +19,13 @@ viM - Select content within current ruby class
 vaM - Select content around current ruby class
 
 # Search and Replace
-:.,$s/\vBEFORE/AFTER/gc - Replace from current line to end of file
-:,$s/\vBEFORE/AFTER/gc - Shorter replace from current line to end of file 
-  
+:,$s/BEFORE/AFTER/  - Replace from current line to end of file
+:,%s:BEFORE:AFTER:  - Colon delimiter (can use any non-regex metacharacter)
+:%s/\vBEFORE/AFTER/ - Very magic mode so metacharacters like [] () don't need escaping
+
+# Align/Tabular
+n,mTab /\A= - Align on the 1st = in the string (useful if there are multiple =)
+
 # Motions  
 %	- Move to corresponding bracket    
 (	- Move cursor to the beginning of current sentence    
@@ -44,11 +48,13 @@ O - Opens line above cursor and starts in insert mode
 I - Insert text at beginning of the line  
   
 # Buffers  
-:bn    - go to next buffer  
-:bp    - go to previous buffer  
-:bd    - delete a buffer (close a file)  
-:N,Mbd - Delete buffer range N-M  
-:bw    - Wipeout a buffer
+:bn              - go to next buffer
+:bp              - go to previous buffer
+:bd              - delete a buffer (close a file)
+:Bd              - delete a buffer without closing window using Bbye plugin
+:N,Mbd           - Delete buffer range N-M
+:bw              - Wipeout a buffer
+:bufdo :Bdelete  - Close all open buffers but leave windows intact
 
 # grep
 :vim /<pattern>/ <file/path/*> - grep for pattern in file/path
