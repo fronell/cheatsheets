@@ -1,3 +1,6 @@
 unalias ll
 To temporarily bypass an alias, put a \ in front of the command i.e. \ls
 
+# vi mode
+# Reference: http://www.catonmat.net/download/bash-vi-editing-mode-cheat-sheet.txt
+# - Prepend '#' (comment character) to the line and send it to the history. 

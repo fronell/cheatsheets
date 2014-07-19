@@ -134,7 +134,8 @@ zb          - move current line to the bottom of the screen
 :windo diffthis - Diff open windows  
 ]c              - Goto next change
 [c              - Goto previous change
-:diffoff!       - Turn off diff  
+:diffoff        - Turn off diff for current window
+:diffoff!       - Turn off diff for all windows 
 :diffupdate     - Do this if diff doesn't reflect changes in the buffer(s)
 :do - Same as diffget (diffg) without range or buffer spec
 :dp - Same as diffput (diffpu) without range or buffer spec
@@ -148,7 +149,7 @@ zb          - move current line to the bottom of the screen
 # Shell Commands  
 :r !date		    - Reads command into file  
 :!<command>		  - Executes <command>  
-:!<command> %	  - Executes <command> using contents of buffer i.e. !ruby %
+:!<command> %	  - Executes <command> on file in opened buffer (must save changes to file)
 :r <filename|!> - Pastes <filename|command> below cursor position  
   
 # Tags  
@@ -199,16 +200,8 @@ yss)  - Wrap entire line in () with no space i.e (entire line of words)
 ,pt - tag mode
 ,pf - file mode
 ,pp - mixed mode (everything)
-
-### ctrl-p modes
-:CtrlP or :CtrlP dir   - invoke CtrlP in find file mode.
-:CtrlPBuffer           - Open in buffer mode
-:CtrlPMRU              - Open in MRU mode
-:CtrlPMixed            - Search everything
-:help ctrlp-commands   - Help on commands
-:help ctrlp-extensions - Help on extensions
   
-### ctrl-p commands
+### commands
 Press <F5> to purge/refresh the cache for the current directory to get new files, remove deleted files and apply new ignore options.  
 Press <c-f> and <c-b> to cycle between modes.  
 Press <c-d> to switch to filename only search instead of full path.  
@@ -223,6 +216,10 @@ Run :help ctrlp-mappings or submit ? in CtrlP for more mapping help.
 Submit two or more dots .. to go up the directory tree by one or multiple levels.  
 End the input string with a colon : followed by a command to execute it on the opening file(s):  
 Use :diffthis when opening multiple files to run :diffthis on the first 4 files.  
+
+### help
+:help ctrlp-commands   - Help on commands
+:help ctrlp-extensions - Help on extensions
 
 ## NERDtree
 o.......Open files, directories and bookmarks....................|NERDTree-o|
