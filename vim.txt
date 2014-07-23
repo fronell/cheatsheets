@@ -5,6 +5,8 @@
 :set ff=unix - Set format to unix, best method for removing ^M line endings
 ,m           - Old way of removing ^M line endings for dos files
 :pwd         - Show current working directory
+:sp <file>   - Open <file> in a horizontal split
+:vsp <file>  - Open <file> in a vertical split
 
 # Visual Selection
 <from_line>GV<to_line>G - Visually select range
@@ -23,7 +25,7 @@ vaM - Select content around current ruby class
 :,%s:BEFORE:AFTER:  - Colon delimiter (can use any non-regex metacharacter)
 :%s/\vBEFORE/AFTER/ - Very magic mode so metacharacters like [] () don't need escaping
 
-# Align/Tabular
+# Tabular
 n,mTab /\A= - Align on the 1st = in the string (useful if there are multiple =)
 
 # Motions  
@@ -57,7 +59,9 @@ I - Insert text at beginning of the line
 :bufdo :Bdelete  - Close all open buffers but leave windows intact
 
 # grep
-:vim /<pattern>/ <file/path/*> - grep for pattern in file/path
+:vim /<pattern>/ <file/path/*>       - grep for pattern in file/path
+:vim /<pattern>/ <file/path/**>      - grep for pattern in all files recursively
+:vim /<pattern>/ <file/path/**/*.rb> - grep for pattern in .rb files recursively
 
 # Indentation
 >>   - Indent line by shiftwidth spaces
@@ -117,6 +121,10 @@ C-w +       - Increase window height
 C-w -       - Decreate window height  
 C-w >       - Increase window width  
 C-w <       - Decrease window width  
+
+# Tabs
+gt - Move to next tab in normal mode
+gT - Move to previous tab in normal mode
   
 # Movement Commands  
 C-e         - Scroll down one line at a time
@@ -181,6 +189,8 @@ CTRL-Y        - Accept
 ## fugitive
 Gblame      - Opens a vertical split window with the blame info on the left
 Gdiff       - Compare working copy of file with the last commit
+Gsdiff      - Compare working copy of file with the last commit in split
+Gvdiff      - Compare working copy of file with the last commit in vsplit
 Gstatus     - Bring up status window showing stage and unstaged changes
               Press - to toggle moving files between staged and unstaged
 Glog [-<n>] - Bring up git log in seperate buffer with revisions in quickfix list
@@ -262,3 +272,13 @@ B.......Toggle whether the bookmark table is displayed...........|NERDTree-B|
 q.......Close the NERDTree window................................|NERDTree-q|
 A.......Zoom (maximize/minimize) the NERDTree window.............|NERDTree-A|
 ?.......Toggle the display of the quick help.....................|NERDTree-?|
+
+# How-To's
+## Diffing a file from a previous commit in git
+>Open the file you want to diff
+>:Gitv! to bring up the commit browser for the file
+>Press D on the commit to diff against
+### Commands to open commit but stay in buffer window
+>o - Open in new split
+>O - Open in new tab
+>s - Open in new vsplit
