@@ -7,6 +7,7 @@
 :pwd         - Show current working directory
 :sp <file>   - Open <file> in a horizontal split
 :vsp <file>  - Open <file> in a vertical split
+:Helptags    - Generate help tags for plugins (provided by Pathogen)
 
 # Visual Selection
 <from_line>GV<to_line>G - Visually select range
@@ -59,9 +60,12 @@ I - Insert text at beginning of the line
 :bufdo :Bdelete  - Close all open buffers but leave windows intact
 
 # grep
+## Internal: Slower but it works even if grep isn't installed
 :vim /<pattern>/ <file/path/*>       - grep for pattern in file/path
 :vim /<pattern>/ <file/path/**>      - grep for pattern in all files recursively
 :vim /<pattern>/ <file/path/**/*.rb> - grep for pattern in .rb files recursively
+## External: Faster and can be used like regular grep
+:grep [options] <pattern> <file/path/*> - grep for <pattern> with [options]
 
 # Indentation
 >>   - Indent line by shiftwidth spaces
@@ -186,6 +190,20 @@ CTRL-P        - Previous
 CTRL-Y        - Accept  
   
 # PLUGINS  
+## Ack
+:Ack [options] {pattern} [{directories}]
+### In quickfix window
+o  - to open (same as enter)
+O  - to open and close quickfix window
+go - to preview file (open but maintain focus on ack.vim results)
+t  - to open in new tab
+T  - to open in new tab silently
+h  - to open in horizontal split
+H  - to open in horizontal split silently
+v  - to open in vertical split
+gv - to open in vertical split silently
+q  - to close the quickfix window
+
 ## fugitive
 Gblame      - Opens a vertical split window with the blame info on the left
 Gdiff       - Compare working copy of file with the last commit
