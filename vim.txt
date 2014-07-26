@@ -9,6 +9,13 @@
 :vsp <file>  - Open <file> in a vertical split
 :Helptags    - Generate help tags for plugins (provided by Pathogen)
 
+# Copy and Pasting
+:"0P         - Paste in last yanked text in front of cursor position
+<C-r>0       - Paste while in insert mode
+"+y          - Yank to system clipboard
+"+p          - Put from system clipboard
+<C-r>+       - Paste from system clipboard while in insert mode
+
 # Visual Selection
 <from_line>GV<to_line>G - Visually select range
 <from_line>GV<count>j   - Visually select <count> lines down (j) <from_line>
@@ -20,6 +27,9 @@ vim - Select contents within current ruby method
 vam - Select contents around current ruby method
 viM - Select content within current ruby class
 vaM - Select content around current ruby class
+
+# Visually select inside delimiter
+vi} - Visually select everything inside {}
 
 # Search and Replace
 :,$s/BEFORE/AFTER/  - Replace from current line to end of file
@@ -116,19 +126,26 @@ C-w nv      - Creates a new window in vertical split with an empty buffer
 C-w q       - Close current window  
 :q          - Close current window  
 C-w o       - Close all windows but current  
+C-w T       - Move a window to a new tab
 C-h,j,k,l   - Nagivate through windows  
 C-w r       - Rotate windows downwards/rightwards  
 C-w R       - Rotate windows upwards/leftwards  
 C-w H,K,J,L - Move current window to key position  
-C-w =       - Make windows equal in size  
+C-w x       - Swap a window with its neighbor
 C-w +       - Increase window height  
 C-w -       - Decreate window height  
 C-w >       - Increase window width  
 C-w <       - Decrease window width  
+C-w =       - Make windows equal in size  
+C-w _       - Maximize window vertically
+C-w |       - Maximize window horizontally
 
 # Tabs
-gt - Move to next tab in normal mode
-gT - Move to previous tab in normal mode
+gt         - Move to next tab in normal mode
+gT         - Move to previous tab in normal mode
+#gt        - Move directly tab #
+:tabonly   - Close all tabs but the active one
+:tabmove # - Move active tab to position after tab #
   
 # Movement Commands  
 C-e         - Scroll down one line at a time
@@ -155,8 +172,9 @@ zb          - move current line to the bottom of the screen
 :diffoff        - Turn off diff for current window
 :diffoff!       - Turn off diff for all windows 
 :diffupdate     - Do this if diff doesn't reflect changes in the buffer(s)
-:do - Same as diffget (diffg) without range or buffer spec
-:dp - Same as diffput (diffpu) without range or buffer spec
+:do             - Same as diffget but does not work with argument, range or visual mode
+:dp             - Same as diffput but does not work with argument, range or visual mode
+## I've found diffget and diffput work better than do and dp
 :[range]diffg [bufspec]   - Modify the current buffer to undo difference with another buffer
                             If no range is given, the diff at the cursor position or just 
                             above it is affected
@@ -300,3 +318,15 @@ A.......Zoom (maximize/minimize) the NERDTree window.............|NERDTree-A|
 >o - Open in new split
 >O - Open in new tab
 >s - Open in new vsplit
+
+## Auto-indenting a whole file
+>ggVG to visually select the whole file
+><... to flatten the structure.  Repeat as much as necessary with .
+>gg to jump to the top of the file
+>=G to auto-align the entire file based on the auto-indent rules
+
+## Replacing tabs with spaces
+>set tabstop=2 to set all tabs to 2 spaces
+>set expandtab to enable converting tabs to space (may not be needed)
+>retab! to convert tabs to spaces
+
