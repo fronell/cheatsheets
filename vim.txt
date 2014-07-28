@@ -50,33 +50,6 @@ GN     - Jump to last search result
 CTRL-O - Go back to where you came from  
 CTRL-I - Goes forward  
   
-# Insert Commands  
-a - Append after cursor  
-A - Append after line  
-x - Delete character at cursor  
-r - Replace character at cursor  
-R - Replace character at cursor onward  
-o - Opens line below cursor and starts in insert mode  
-O - Opens line above cursor and starts in insert mode  
-I - Insert text at beginning of the line  
-  
-# Buffers  
-:bn              - go to next buffer
-:bp              - go to previous buffer
-:bd              - delete a buffer (close a file)
-:Bd              - delete a buffer without closing window using Bbye plugin
-:N,Mbd           - Delete buffer range N-M
-:bw              - Wipeout a buffer
-:bufdo :Bdelete  - Close all open buffers but leave windows intact
-
-# grep
-## Internal: Slower but it works even if grep isn't installed
-:vim /<pattern>/ <file/path/*>       - grep for pattern in file/path
-:vim /<pattern>/ <file/path/**>      - grep for pattern in all files recursively
-:vim /<pattern>/ <file/path/**/*.rb> - grep for pattern in .rb files recursively
-## External: Faster and can be used like regular grep
-:grep [options] <pattern> <file/path/*> - grep for <pattern> with [options]
-
 # Indentation
 >>   - Indent line by shiftwidth spaces
 <<   - De-indent line by shiftwidth spaces
@@ -94,51 +67,6 @@ I - Insert text at beginning of the line
 
 >i{  - Increase inner block indent
 <i{  - Decrease inner block indent
-
-  
-# Folding  
-zi        - open/close all folds  
-zm        - Increases the foldlevel by one.  
-zr        - Decreases the foldlevel by one.  
-zfa}      - Fold block delimited by {}, works with (), [], <> also
-za        - toggle current fold open/closed  
-zc        - close current fold  
-zM        - close all folds  
-zv        - expands folds to reveal cursor  
-zf#j      - Creates a fold from the cursor down  #  lines.  
-zf/string - Creates a fold from the cursor to string .  
-zj        - Moves the cursor to the next fold.  
-zk        - Moves the cursor to the previous fold.  
-zo        - Opens a fold at the cursor.  
-zO        - Opens all folds at the cursor.  
-zR        - Decreases the foldlevel to zero -- all folds will be open.  
-zd        - Deletes the fold at the cursor.  
-zE        - Deletes all folds.  
-[z        - Move to start of open fold.  
-]z        - Move to end of open fold.  
-  
-# Windows  
-C-w s       - Show buffer in horizontally split windows  
-C-w v       - Show buffer in vertically split windows  
-C-w n       - Creates a new window in horizontal split with an empty buffer  
-C-w nv      - Creates a new window in vertical split with an empty buffer  
-:enew       - Creates a new window with an empty buffer and switches to it  
-C-w q       - Close current window  
-:q          - Close current window  
-C-w o       - Close all windows but current  
-C-w T       - Move a window to a new tab
-C-h,j,k,l   - Nagivate through windows  
-C-w r       - Rotate windows downwards/rightwards  
-C-w R       - Rotate windows upwards/leftwards  
-C-w H,K,J,L - Move current window to key position  
-C-w x       - Swap a window with its neighbor
-C-w +       - Increase window height  
-C-w -       - Decreate window height  
-C-w >       - Increase window width  
-C-w <       - Decrease window width  
-C-w =       - Make windows equal in size  
-C-w _       - Maximize window vertically
-C-w |       - Maximize window horizontally
 
 # Tabs
 gt         - Move to next tab in normal mode
@@ -201,12 +129,6 @@ zb          - move current line to the bottom of the screen
 ^W]       - split window and show tag under cursor  
 ^Wz,:pc   - close tag preview window  
 
-# Omnicompletion
-CTRL-X CTRL-O - Autocomplete  
-CTRL-N        - Next  
-CTRL-P        - Previous  
-CTRL-Y        - Accept  
-  
 # PLUGINS  
 ## Ack
 :Ack [options] {pattern} [{directories}]
@@ -232,10 +154,17 @@ Gstatus     - Bring up status window showing stage and unstaged changes
 Glog [-<n>] - Bring up git log in seperate buffer with revisions in quickfix list
               n represents the amount of previous revisions to load
 
-## nerdcommenter
+## nerdcommenter: No space inserted after comment character
 ,ci         - Comment a line on/off (inverse commenting)
 <count>,ci  - Comment count lines on/off
 <visual>,ci - Comment lines in visual mode on/off
+
+## vim-commentary: Inserts space after comment character
+gc{motion}         - Comment or uncomment lines that {motion} moves over
+gcc                - Comment or uncomment [count] lines
+{Visual}gc         - Comment or uncomment the highlighted lines
+gcu                - Uncomment the current and adjacent commented lines
+:[range]Commentary - Comment or uncomment [range] lines
 
 ## vim-surround
 cs'"  - Use surround plugin to replace surrounding ' with "s
@@ -330,3 +259,81 @@ A.......Zoom (maximize/minimize) the NERDTree window.............|NERDTree-A|
 >set expandtab to enable converting tabs to space (may not be needed)
 >retab! to convert tabs to spaces
 
+# Stuff I already know, or at least I think I do
+## Insert Commands  
+a - Append after cursor  
+A - Append after line  
+x - Delete character at cursor  
+r - Replace character at cursor  
+R - Replace character at cursor onward  
+o - Opens line below cursor and starts in insert mode  
+O - Opens line above cursor and starts in insert mode  
+I - Insert text at beginning of the line  
+
+# Buffers  
+:bn              - go to next buffer
+:bp              - go to previous buffer
+:bd              - delete a buffer (close a file)
+:Bd              - delete a buffer without closing window using Bbye plugin
+:N,Mbd           - Delete buffer range N-M
+:bw              - Wipe out buffer, recommended to use buffer delete instead
+:bufdo :Bdelete  - Close all open buffers but leave windows intact
+
+# grep
+## Internal: Slower but it works even if grep isn't installed
+:vim /<pattern>/ <file/path/*>       - grep for pattern in file/path
+:vim /<pattern>/ <file/path/**>      - grep for pattern in all files recursively
+:vim /<pattern>/ <file/path/**/*.rb> - grep for pattern in .rb files recursively
+## External: Faster and can be used like regular grep
+:grep [options] <pattern> <file/path/*> - grep for <pattern> with [options]
+
+# Folding  
+zi        - open/close all folds  
+zm        - Increases the foldlevel by one.  
+zr        - Decreases the foldlevel by one.  
+zfa}      - Fold block delimited by {}, works with (), [], <> also
+za        - toggle current fold open/closed  
+zc        - close current fold  
+zM        - close all folds  
+zv        - expands folds to reveal cursor  
+zf#j      - Creates a fold from the cursor down  #  lines.  
+zf/string - Creates a fold from the cursor to string .  
+zj        - Moves the cursor to the next fold.  
+zk        - Moves the cursor to the previous fold.  
+zo        - Opens a fold at the cursor.  
+zO        - Opens all folds at the cursor.  
+zR        - Decreases the foldlevel to zero -- all folds will be open.  
+zd        - Deletes the fold at the cursor.  
+zE        - Deletes all folds.  
+[z        - Move to start of open fold.  
+]z        - Move to end of open fold.  
+  
+# Windows  
+C-w s       - Show buffer in horizontally split windows  
+C-w v       - Show buffer in vertically split windows  
+C-w n       - Creates a new window in horizontal split with an empty buffer  
+C-w nv      - Creates a new window in vertical split with an empty buffer  
+:enew       - Creates a new window with an empty buffer and switches to it  
+C-w q       - Close current window  
+:q          - Close current window  
+C-w o       - Close all windows but current  
+C-w T       - Move a window to a new tab
+C-h,j,k,l   - Nagivate through windows  
+C-w r       - Rotate windows downwards/rightwards  
+C-w R       - Rotate windows upwards/leftwards  
+C-w H,K,J,L - Move current window to key position  
+C-w x       - Swap a window with its neighbor
+C-w +       - Increase window height  
+C-w -       - Decreate window height  
+C-w >       - Increase window width  
+C-w <       - Decrease window width  
+C-w =       - Make windows equal in size  
+C-w _       - Maximize window vertically
+C-w |       - Maximize window horizontally
+
+# Omnicompletion
+CTRL-X CTRL-O - Autocomplete  
+CTRL-N        - Next  
+CTRL-P        - Previous  
+CTRL-Y        - Accept  
+  
