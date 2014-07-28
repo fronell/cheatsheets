@@ -21,8 +21,10 @@
 <from_line>GV<count>j   - Visually select <count> lines down (j) <from_line>
 
 # Visually select Ruby text objects
+## Provided by vim-textobj-rubyblock
 vir - Select inner-portion of ruby block
 var - Select entire ruby block
+## Provided by vim-ruby
 vim - Select contents within current ruby method
 vam - Select contents around current ruby method
 viM - Select content within current ruby class
