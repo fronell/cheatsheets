@@ -1,42 +1,8 @@
-# General  
-:h - Bring up help    
-
-# Misc
-:set ff=unix - Set format to unix, best method for removing ^M line endings
-,m           - Old way of removing ^M line endings for dos files
-:pwd         - Show current working directory
-:sp <file>   - Open <file> in a horizontal split
-:vsp <file>  - Open <file> in a vertical split
-:Helptags    - Generate help tags for plugins (provided by Pathogen)
-
-# Copy and Pasting
-:"0P         - Paste in last yanked text in front of cursor position
-<C-r>0       - Paste while in insert mode
-"+y          - Yank to system clipboard
-"+p          - Put from system clipboard
-<C-r>+       - Paste from system clipboard while in insert mode
-
-# Visual Selection
-<from_line>GV<to_line>G - Visually select range
-<from_line>GV<count>j   - Visually select <count> lines down (j) <from_line>
-
-# Visually select Ruby text objects
-## Provided by vim-textobj-rubyblock
-vir - Select inner-portion of ruby block
-var - Select entire ruby block
-## Provided by vim-ruby
-vim - Select contents within current ruby method
-vam - Select contents around current ruby method
-viM - Select content within current ruby class
-vaM - Select content around current ruby class
-
-# Visually select inside delimiter
-vi} - Visually select everything inside {}
-
-# Search and Replace
+e
 :,$s/BEFORE/AFTER/  - Replace from current line to end of file
 :,%s:BEFORE:AFTER:  - Colon delimiter (can use any non-regex metacharacter)
 :%s/\vBEFORE/AFTER/ - Very magic mode so metacharacters like [] () don't need escaping
+:%s/\VBEFORE/AFTER/ - Literal mode, need to escape all metacharacter
 
 # Tabular
 n,mTab /\A= - Align on the 1st = in the string (useful if there are multiple =)
@@ -314,7 +280,9 @@ zE        - Deletes all folds.
 C-w s       - Show buffer in horizontally split windows  
 C-w v       - Show buffer in vertically split windows  
 C-w n       - Creates a new window in horizontal split with an empty buffer  
+:new        - Creates a new window in horizontal split with an empty buffer  
 C-w nv      - Creates a new window in vertical split with an empty buffer  
+:vnew       - Creates a new window in vertical split with an empty buffer  
 :enew       - Creates a new window with an empty buffer and switches to it  
 C-w q       - Close current window  
 :q          - Close current window  
