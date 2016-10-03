@@ -169,6 +169,13 @@ gcc                - Comment or uncomment [count] lines
 gcu                - Uncomment the current and adjacent commented lines
 :[range]Commentary - Comment or uncomment [range] lines
 
+##  tcomment: Winner of comment plugin over nerdcommenter & vim-commentary
+gc{motion}       - Comment or uncomment lines that {motion} moves over
+gcc              - Comment or uncomment [count] lines
+{Visual}gc       - Comment or uncomment the highlighted lines
+gcu              - Uncomment the current and adjacent commented lines
+:[range]TComment - Comment or uncomment [range] lines
+
 ## vim-surround
 cs'"  - Use surround plugin to replace surrounding ' with "s
 ds'   - Delete ' delimiters
