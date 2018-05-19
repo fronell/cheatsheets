@@ -14,8 +14,8 @@ p		# Change to previous window
 "		# View window list
 [		# Enter copy mode
 ]		# Paste
->		# Write paste buffer to file 
-<		# Read paste buffer from file		
+>		# Write paste buffer to file
+<		# Read paste buffer from file
 exit		# Exit the screen
 F		# Fit screen to new terminal size
 
