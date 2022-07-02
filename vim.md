@@ -1,8 +1,11 @@
 # Help
+The Help command requires tags to show documentation for a plugin.  The
+command ":Helptags" must be run when plugins are added or existing plugin
+documentation has been changed to create the tags.
 ```
-:Helptags      | Generate help tags for plugins (provided by Pathogen plugin)
-:h <tag>       | Open Vim/Plugin help doc containing tag in split window, tab completion supported
-:vert h <tag>  | Open Vim/Plugin help doc containing tag in vertical split window, tab completion supported
+:Helptags      | Create help tags for plugins (command provided by Pathogen)
+:h <tag>       | Open help for tag in split, tab completion supported
+:vert h <tag>  | Open help for tag in vsplit, tab completion supported
 ```
 
 # File Format
@@ -49,7 +52,8 @@ vi}  | Visually select everything inside {}
 ```
 :,$s/BEFORE/AFTER/   | Replace from current line to end of file
 :,%s:BEFORE:AFTER:   | Colon delimiter (can use any non-regex metacharacter)
-:%s/\vBEFORE/AFTER/  | Very magic mode so metacharacters like [] () don't need escaping
+:%s/\vBEFORE/AFTER/  | Very magic mode so metacharacters like [] () don't need
+                       escaping
 :%s/\VBEFORE/AFTER/  | Literal mode, need to escape all metacharacter
 ```
 
@@ -84,16 +88,13 @@ CTRL-I  | Goes forward
 <<    | De-indent line by shiftwidth spaces
 5>>   | Indent 5 lines
 5==   | Re-indent 5 lines
-
->%    | Increase indent of a braced or bracketed block (place cursor on brace first)
+>%    | Increase indent of a braced or bracketed block (place cursor on brace)
 =%    | Reindent a braced or bracketed block (cursor on brace)
 <%    | Decrease indent of a braced or bracketed block (cursor on brace)
 ]p    | Paste text, aligning indentation with surroundings
-
 =i{   | Re-indent the 'inner block', i.e. the contents of the block
 =a{   | Re-indent 'a block', i.e. block and containing braces
 =2a{  | Re-indent '2 blocks', i.e. this block and containing block
-
 >i{   | Increase inner block indent
 <i{   | Decrease inner block indent
 ```
@@ -135,16 +136,16 @@ zb     | move current line to the bottom of the screen
 :diffoff         | Turn off diff for current window
 :diffoff!        | Turn off diff for all windows
 :diffupdate      | Do this if diff doesn't reflect changes in the buffer(s)
-:do              | Same as diffget but does not work with argument, range or visual mode
-:dp              | Same as diffput but does not work with argument, range or visual mode
+:do              | diffget without argument, range or visual mode support
+:dp              | diffput without argument, range or visual mode support
                  | # I've found diffget and diffput work better than do and dp
 ```
 
 # Shell Commands
 ```
 :r !date         | Reads command into file
-:!<command>      | Executes <command>
-:!<command> %    | Executes <command> on file in opened buffer (must save changes to file)
+:!<command>      | Runs <command>
+:!<command> %    | Runs <command> on file in buffer (Save file before running)
 :r <filename|!>  | Pastes <filename|command> below cursor position
 ```
 
@@ -165,9 +166,14 @@ zb     | move current line to the bottom of the screen
 
 # PLUGINS
 ## pt (The Platinum Searcher)
-**IMPORTANT** Note: pt will skip binary files by default.  I found that **files in the dos format are considered binary** by these tools and the fix is to convert them to unix format using a tool such as dos2unix (or vim).  dos2unix can be used to show if a file is in dos format by issuing the following command:  
+**IMPORTANT** Note: pt will skip binary files by default.  I found that **files
+in the dos format are considered binary** by these tools and the fix is to
+convert them to unix format using a tool such as dos2unix (or vim).  dos2unix
+can be used to show if a file is in dos format by issuing the following
+command:  
 `dos2unix -ic *`  
-Any text file listed is in dos format and needs to be converted so it can be searched.   
+Any text file listed is in dos format and needs to be converted so it can be
+searched.   
 ```
 :Pt [options] {pattern} [{directories}]   | Opens file if pattern found
 :Pt! [options] {pattern} [{directories}]  | Does not open file if pattern found
@@ -189,6 +195,17 @@ q   | to close the quickfix window
 ## fugitive
 Section needs to be updated to support current version of fugitive
 ```
+:G                  | git status in split that supports syntax operations such
+                      as ]] to jump to next section
+g?                  | Show available fugitive commands
+:G log -- %         | Show entire commit history for file in current window
+:G log -10 -- %     | Show last 10 commits for file in current window
+:G log -p -10 -- %  | Sow changes from last 10 commits in patch format
+:Gvdiffsplit        | Opens vsplit diff between staged and working tree versions
+:Gvdiffsplit!       | Perform command and maintain focus on current window
+:G difftool -y      | Open new tab with diff splits for each file with a change
+:Gread              | Git checkout file into buffer (does not modify git repo)
+:Gvsplit HEAD~#:%   | Open file in current window from # commits ago in vsplit
 ```
 
 ##  tcomment: Winner of comment plugin over nerdcommenter & vim-commentary
@@ -223,7 +240,8 @@ yss)          | Wrap entire line in () with no space
 
 ### commands
 ```
-<F5>   | Purge/refresh the cache for the current directory to get new files, remove deleted files and apply new ignore options
+<F5>   | Purge/refresh the cache for the current directory to get new files,
+         remove deleted files and apply new ignore options
 <C-f>  | Cycle forward between modes
 <C-b>  | Cycle backward between modes
 <C-d>  | Switch to filename only search instead of full path
@@ -238,9 +256,11 @@ yss)          | Wrap entire line in () with no space
 <C-y>  | Create a new file and its parent directories
 <C-z>  | Mark/unmark multiple files
 <C-o>  | Open marked files
-..     | Go up the directory tree by one level, add more dots for multiple levels
-       | End the input string with a colon : followed by a command to execute it on the opening file(s):
-       | Use :diffthis when opening multiple files to run :diffthis on the first 4 files.
+..     | Go up directory tree by one level, add more dots for multiple levels
+       | End the input string with a colon : followed by a command to execute it
+         on the opening file(s):
+       | Use :diffthis when opening multiple files to run :diffthis on the first
+         4 files.
 ```
 
 ### help
@@ -307,9 +327,9 @@ I  | Insert text at beginning of the line
 # grep
 ## Internal: Slower but it works even if grep isn't installed
 ```
-:vim /<pattern>/ <file/path/*>        | grep for pattern in file/path
-:vim /<pattern>/ <file/path/**>       | grep for pattern in all files recursively
-:vim /<pattern>/ <file/path/**/*.rb>  | grep for pattern in .rb files recursively
+:vim /<pattern>/ <file/path/*>        | grep pattern in file/path
+:vim /<pattern>/ <file/path/**>       | grep pattern in all files recursively
+:vim /<pattern>/ <file/path/**/*.rb>  | grep pattern in .rb files recursively
 ```
 ## External: Faster and can be used like regular grep
 ```
@@ -353,7 +373,7 @@ zE         | Deletes all folds.
 <C-w>q        | Close current window
 :q            | Close current window
 <C-w>o        | Close all windows but current
-<C-w>T        | Move a window to a new tab
+<C-w>T        | Move window to a new tab
 <C-h,j,k,l>   | Nagivate through windows
 <C-w>r        | Rotate windows downwards/rightwards
 <C-w>R        | Rotate windows upwards/leftwards
