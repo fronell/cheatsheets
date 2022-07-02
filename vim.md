@@ -1,16 +1,14 @@
-# General
+# Help
 ```
-:h | Bring up help
+:Helptags      | Generate help tags for plugins (provided by Pathogen plugin)
+:h <tag>       | Open Vim/Plugin help doc containing tag in split window, tab completion supported
+:vert h <tag>  | Open Vim/Plugin help doc containing tag in vertical split window, tab completion supported
 ```
 
-# Misc
+# File Format
 ```
 :set ff=unix  | Set format to unix, best method for removing ^M line endings
 ,m            | Old way of removing ^M line endings for dos files
-:pwd          | Show current working directory
-:sp <file>    | Open <file> in a horizontal split
-:vsp <file>   | Open <file> in a vertical split
-:Helptags     | Generate help tags for plugins (provided by Pathogen)
 ```
 
 # Copy and Pasting
@@ -56,8 +54,13 @@ vi}  | Visually select everything inside {}
 ```
 
 # Tabular
+Reference: http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 ```
-n,mTab /\A=  | Align on the 1st = in the string (useful if there are multiple =)
+n,mTab /\A-   | Align on the 1st - in string (useful if there are multiple -)
+n,mTab /:\zs  | Align using the 1st character after the :, useful when you want
+                to keep the : with the preceding word but align everything after
+                i.e. "data:    value" instead of "data    : value"
+                \zs is a vim specific token for regular expressions
 ```
 
 # Motions
@@ -106,22 +109,22 @@ gT          | Move to previous tab in normal mode
 
 # Movement Commands
 ```
-C-e          | Scroll down one line at a time
-C-y          | Scroll up one line at a time
-ctrl-d       | Scroll down half a page
-ctrl-u       | Scroll up half a page
-ctrl-f       | Scroll forward one page
-ctrl-b       | Scroll back one page
-(            | Move to the beginning of current sentence
-)            | Move to the end of next sentence
-{            | Move to the beginning of current paragraph
-}            | Move to the beginning of next paragraph
-[[           | Move to the beginning of current section
-]]           | Move to the beginning of next section
-<line num>G  | Move to <line num>
-zz           | move current line to the middle of the screen
-zt           | move current line to the top of the screen
-zb           | move current line to the bottom of the screen
+<C-e>  | Scroll down one line at a time
+<C-y>  | Scroll up one line at a time
+<C-d>  | Scroll down half a page
+<C-u>  | Scroll up half a page
+<C-f>  | Scroll forward one page
+<C-b>  | Scroll back one page
+(      | Move to the beginning of current sentence
+)      | Move to the end of next sentence
+{      | Move to the beginning of current paragraph
+}      | Move to the beginning of next paragraph
+[[     | Move to the beginning of current section
+]]     | Move to the beginning of next section
+#G     | Move to line #
+zz     | move current line to the middle of the screen
+zt     | move current line to the top of the screen
+zb     | move current line to the bottom of the screen
 ```
 
 # Diffing Windows
@@ -161,11 +164,15 @@ zb           | move current line to the bottom of the screen
 ```
 
 # PLUGINS
-## Ack
+## pt (The Platinum Searcher)
+**IMPORTANT** Note: pt will skip binary files by default.  I found that **files in the dos format are considered binary** by these tools and the fix is to convert them to unix format using a tool such as dos2unix (or vim).  dos2unix can be used to show if a file is in dos format by issuing the following command:  
+`dos2unix -ic *`  
+Any text file listed is in dos format and needs to be converted so it can be searched.   
 ```
-:Ack [options] {pattern} [{directories}]
+:Pt [options] {pattern} [{directories}]   | Opens file if pattern found
+:Pt! [options] {pattern} [{directories}]  | Does not open file if pattern found
 ```
-### In quickfix window
+### pt Quickfix Window Commands
 ```
 o   | to open (same as enter)
 O   | to open and close quickfix window
@@ -180,15 +187,8 @@ q   | to close the quickfix window
 ```
 
 ## fugitive
+Section needs to be updated to support current version of fugitive
 ```
-Gblame       | Opens a vertical split window with the blame info on the left
-Gdiff        | Compare working copy of file with the last commit
-Gsdiff       | Compare working copy of file with the last commit in split
-Gvdiff       | Compare working copy of file with the last commit in vsplit
-Gstatus      | Bring up status window showing stage and unstaged changes
-             |   Press | to toggle moving files between staged and unstaged
-Glog [-<n>]  | Bring up git log in seperate buffer with revisions in quickfix
-             |   list n represents the amount of previous revisions to load
 ```
 
 ##  tcomment: Winner of comment plugin over nerdcommenter & vim-commentary
@@ -201,13 +201,14 @@ gcu               | Uncomment the current and adjacent commented lines
 ```
 
 ## vim-surround
+Reference: https://vimeo.com/6093081
 ```
-cs'"   | Use surround plugin to replace surrounding ' with "s
-ds'    | Delete ' delimiters
-csw)   | Use motion w to wrap word in () with no spaces
-ysiw{  | Wrap selected word in {} with space i.e. { word }
-ysiw}  | Wrap selected word in {} with no space i.e. {word}
-yss)   | Wrap entire line in () with no space i.e (entire line of words)
+cs'"          | Change surrounding (cs) ' with "
+ds'           | Delete surround (ds) '
+ysi<Motion>{  | Surround <motion> with {} including a space i.e. { word }
+ysi<Motion>}  | Surround <motion> with {} without a space i.e. {word}
+yss)          | Wrap entire line in () with no space
+<Visual>S)    | Wrap visual selection in () with no space
 ```
 
 ## ctrl-p
@@ -222,131 +223,60 @@ yss)   | Wrap entire line in () with no space i.e (entire line of words)
 
 ### commands
 ```
-Press <F5> to purge/refresh the cache for the current directory to get new files, remove deleted files and apply new ignore options.
-Press <c-f> and <c-b> to cycle between modes.
-Press <c-d> to switch to filename only search instead of full path.
-Press <c-r> to switch to regexp mode.
-Use <c-j>, <c-k> or the arrow keys to navigate the result list.
-Use <c-t> or <c-v>, <c-x> to open the selected entry in a new tab or in a new split.
-Use <c-n>, <c-p> to select the next/previous string in the prompt's history.
-Use <c-y> to create a new file and its parent directories.
-Use <c-z> to mark/unmark multiple files and <c-o> to open them.
-Run :help ctrlp-mappings or submit ? in CtrlP for more mapping help.
-
-Submit two or more dots .. to go up the directory tree by one or multiple levels.
-End the input string with a colon : followed by a command to execute it on the opening file(s):
-Use :diffthis when opening multiple files to run :diffthis on the first 4 files.
+<F5>   | Purge/refresh the cache for the current directory to get new files, remove deleted files and apply new ignore options
+<C-f>  | Cycle forward between modes
+<C-b>  | Cycle backward between modes
+<C-d>  | Switch to filename only search instead of full path
+<C-r>  | Switch to Regexp mode
+<C-k>  | Navigate up the result list (arrow keys also work)
+<C-j>  | Navigate down the result list (arrow keys also work)
+<C-t>  | Open the selected entry in a new tab
+<C-v>  | Open the selected entry in a new split or ?
+<C-x>  | Open the selected entry in a new split or ?
+<C-n>  | Select the next string in the prompt's history
+<C-p>  | Select the previous string in the prompt's history
+<C-y>  | Create a new file and its parent directories
+<C-z>  | Mark/unmark multiple files
+<C-o>  | Open marked files
+..     | Go up the directory tree by one level, add more dots for multiple levels
+       | End the input string with a colon : followed by a command to execute it on the opening file(s):
+       | Use :diffthis when opening multiple files to run :diffthis on the first 4 files.
 ```
 
 ### help
 ```
 :help ctrlp-commands    | Help on commands
 :help ctrlp-extensions  | Help on extensions
-```
-
-## VimFiler
-```
-{lhs}			    {rhs}
---------		  -----------------------------
-<Tab>         (default)
-			        (vimfiler_switch_to_another_vimfiler)
-<Tab>         (enabled "no-quit" and "split" options)
-			        (vimfiler_switch_to_other_window)
-j             (vimfiler_loop_cursor_down)
-k             (vimfiler_loop_cursor_up)
-gg            (vimfiler_cursor_top)
-<C-l>         (vimfiler_redraw_screen)
-<Space>       (vimfiler_toggle_mark_current_line)
-<S-LeftMouse> (vimfiler_toggle_mark_current_line)
-<S-Space>     (vimfiler_toggle_mark_current_line_up)
-*             (vimfiler_toggle_mark_all_lines)
-#             (vimfiler_mark_similar_lines)
-U             (vimfiler_clear_mark_all_lines)
-c             (vimfiler_copy_file)
-m             (vimfiler_move_file)
-d             (vimfiler_delete_file)
-Cc            (vimfiler_clipboard_copy_file)
-Cm            (vimfiler_clipboard_move_file)
-Cp            (vimfiler_clipboard_paste)
-r             (vimfiler_rename_file)
-K             (vimfiler_make_directory)
-N             (vimfiler_new_file)
-<Enter>       (vimfiler_cd_or_edit)
-o             (vimfiler_expand_or_edit)
-l             (vimfiler_smart_l)
-x             (vimfiler_execute_system_associated)
-X             (vimfiler_execute_vimfiler_associated)
-h             (vimfiler_smart_h)
-L             (vimfiler_switch_to_drive)
-~             (vimfiler_switch_to_home_directory)
-\             (vimfiler_switch_to_root_directory)
-&             (vimfiler_switch_to_project_directory)
-<C-j>         (vimfiler_switch_to_history_directory)
-<BS>          (vimfiler_switch_to_parent_directory)
-.             (vimfiler_toggle_visible_ignore_files)
-H             (vimfiler_popup_shell)
-e             (vimfiler_edit_file)
-E             (vimfiler_split_edit_file)
-B             (vimfiler_edit_binary_file)
-ge            (vimfiler_execute_external_filer)
-<RightMouse>  (vimfiler_execute_external_filer)
-!             (vimfiler_execute_shell_command)
-q             (vimfiler_hide)
-Q             (vimfiler_exit)
--             (vimfiler_close)
-g?            (vimfiler_help)
-v             (vimfiler_preview_file)
-O             (vimfiler_sync_with_current_vimfiler)
-go            (vimfiler_open_file_in_another_vimfiler)
-<C-g>         (vimfiler_print_filename)
-g<C-g>        (vimfiler_toggle_maximize_window)
-yy            (vimfiler_yank_full_path)
-M             (vimfiler_set_current_mask)
-gr            (vimfiler_grep)
-gf            (vimfiler_find)
-S             (vimfiler_select_sort_type)
-<C-v>         (vimfiler_switch_vim_buffer_mode)
-gc            (vimfiler_cd_vim_current_dir)
-gs            (vimfiler_toggle_safe_mode)
-gS            (vimfiler_toggle_simple_mode)
-a             (vimfiler_choose_action)
-Y             (vimfiler_pushd)
-P             (vimfiler_popd)
-t             (vimfiler_expand_tree)
-T             (vimfiler_expand_tree_recursive)
-I             (vimfiler_cd_input_directory)
-<2-LeftMouse> (vimfiler_double_click)
-gj            (vimfiler_jump_last_child)
-gk            (vimfiler_jump_first_child)
+:help ctrlp-mappings    | Help on mappings
 ```
 
 # How-To's
 ## Diffing a file from a previous commit in git
 ```
->Open the file you want to diff
->:Gitv! to bring up the commit browser for the file
->Press D on the commit to diff against
+Open the file you want to diff
+:Gitv! to bring up the commit browser for the file
+Press D on the commit to diff against
 ```
 ### Commands to open commit but stay in buffer window
 ```
->o  | Open in new split
->O  | Open in new tab
->s  | Open in new vsplit
+o  | Open in new split
+O  | Open in new tab
+s  | Open in new vsplit
 ```
 
 ## Auto-indenting a whole file
 ```
->ggVG  | Visually select the whole file
-><...  | Flatten the structure.  Repeat as much as necessary with .
->gg    | Jump to the top of the file
->=G    | Auto-align the entire file based on the auto-indent rules
+ggVG  | Visually select the whole file
+<...  | Flatten the structure.  Repeat as much as necessary with .
+gg    | Jump to the top of the file
+=G    | Auto-align the entire file based on the auto-indent rules
 ```
 
 ## Replacing tabs with spaces
 ```
->set tabstop=2  | Set all tabs to 2 spaces
->set expandtab  | Enable converting tabs to space (may not be needed)
->retab!         | Convert tabs to spaces
+:set tabstop=2  | Set all tabs to 2 spaces
+:set expandtab  | Enable converting tabs to space (may not be needed)
+:retab!         | Convert tabs to spaces
 ```
 
 # Stuff I already know, or at least I think I do
@@ -364,13 +294,14 @@ I  | Insert text at beginning of the line
 
 # Buffers
 ```
-:bn              | go to next buffer
-:bp              | go to previous buffer
-:bd              | delete a buffer (close a file)
-:Bd              | delete a buffer without closing window using Bbye plugin
-:N,Mbd           | Delete buffer range N-M
-:bw              | Wipe out buffer, recommended to use buffer delete instead
-:bufdo :Bdelete  | Close all open buffers but leave windows intact
+:bn       | Go to next buffer
+:bp       | Go to previous buffer
+:bufdo    | Run command against multiple buffers (google for more detail)
+:bd       | Delete a buffer (close a file)
+:N,Mbd    | Delete buffer range N-M
+:1,$bd    | Delete all buffers
+:Bd       | Delete a buffer without closing window using Bbye plugin
+:Bdelete  | Close all open buffers but leave windows intact
 ```
 
 # grep
@@ -382,7 +313,7 @@ I  | Insert text at beginning of the line
 ```
 ## External: Faster and can be used like regular grep
 ```
-:grep [options] <pattern> <file/path/*> | grep for <pattern> with [options]
+:grep [options] <pattern> <file/path/*>  | Uses grep on the system
 ```
 
 # Folding
@@ -395,7 +326,7 @@ za         | toggle current fold open/closed
 zc         | close current fold
 zM         | close all folds
 zv         | expands folds to reveal cursor
-zf#j       | Creates a fold from the cursor down  #  lines.
+zf#j       | Creates a fold from the cursor down # lines.
 zf/string  | Creates a fold from the cursor to string .
 zj         | Moves the cursor to the next fold.
 zk         | Moves the cursor to the previous fold.
@@ -410,35 +341,29 @@ zE         | Deletes all folds.
 
 # Windows
 ```
-C-w s        | Show buffer in horizontally split windows
-C-w v        | Show buffer in vertically split windows
-C-w n        | Creates a new window in horizontal split with an empty buffer
-:new         | Creates a new window in horizontal split with an empty buffer
-C-w nv       | Creates a new window in vertical split with an empty buffer
-:vnew        | Creates a new window in vertical split with an empty buffer
-:enew        | Creates a new window with an empty buffer and switches to it
-C-w q        | Close current window
-:q           | Close current window
-C-w o        | Close all windows but current
-C-w T        | Move a window to a new tab
-C-h,j,k,l    | Nagivate through windows
-C-w r        | Rotate windows downwards/rightwards
-C-w R        | Rotate windows upwards/leftwards
-C-w H,K,J,L  | Move current window to key position
-C-w x        | Swap a window with its neighbor
-C-w +        | Increase window height
-C-w -        | Decreate window height
-C-w >        | Increase window width
-C-w <        | Decrease window width
-C-w =        | Make windows equal in size
-C-w _        | Maximize window vertically
-C-w |        | Maximize window horizontally
-```
-
-# Omnicompletion
-```
-CTRL-X CTRL-O  | Autocomplete
-CTRL-N         | Next
-CTRL-P         | Previous
-CTRL-Y         | Accept
+:sp <file>    | Open <file> in a horizontal split
+:vsp <file>   | Open <file> in a vertical split
+<C-w>s        | Show buffer in horizontally split windows
+<C-w>v        | Show buffer in vertically split windows
+<C-w>n        | Creates a new window in horizontal split with an empty buffer
+:new          | Creates a new window in horizontal split with an empty buffer
+<C-w>nv       | Creates a new window in vertical split with an empty buffer
+:vnew         | Creates a new window in vertical split with an empty buffer
+:enew         | Creates a new window with an empty buffer and switches to it
+<C-w>q        | Close current window
+:q            | Close current window
+<C-w>o        | Close all windows but current
+<C-w>T        | Move a window to a new tab
+<C-h,j,k,l>   | Nagivate through windows
+<C-w>r        | Rotate windows downwards/rightwards
+<C-w>R        | Rotate windows upwards/leftwards
+<C-w>H,K,J,L  | Move current window to key position
+<C-w>x        | Swap a window with its neighbor
+<C-w>+        | Increase window height
+<C-w>-        | Decreate window height
+<C-w>>        | Increase window width
+<C-w><        | Decrease window width
+<C-w>=        | Make windows equal in size
+<C-w>_        | Maximize window vertically
+<C-w>|        | Maximize window horizontally
 ```
