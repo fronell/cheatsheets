@@ -174,7 +174,7 @@ s//NEW               | Replace currently highlighted string using * with NEW
 ```
 
 # Shell Commands
-Vim8 Builtin Terminal: https://gist.github.com/mahemoff/8967b5de067cffc67cec174cb3a9f49d 
+Vim8 Builtin Terminal: https://gist.github.com/mahemoff/8967b5de067cffc67cec174cb3a9f49d
 ```
 :r !date         | Reads command into file
 :!<command>      | Runs <command>
@@ -193,17 +193,23 @@ Vim8 Builtin Terminal: https://gist.github.com/mahemoff/8967b5de067cffc67cec174c
 
 # Tabs
 ```
-gt       | Move to next tab
-gT       | Move to previous tab
-#gt      | Move directly tab #
-:tabo    | Close all tabs but the active one
-:tabm #  | Move active tab to position after tab #
+gt        | Move to next tab
+gT        | Move to previous tab
+#gt       | Move directly tab #
+:tabc     | Close the current tab
+:tabo     | Close all tabs but the active one
+:tabm #   | Move active tab to position after tab #
+:tabnew   | Opens tabpage after the current one
+:+tabnew  | Opens tabpage after the next tab page, one further than :tabnew
+:-tabnew  | Opens tabpage before the current
+:0tabnew  | Opens tabpage before the first one
+:$tabnew  | Opens tabpage after the last one
 ```
 
 # Tabular
 Reference: http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 ```
-n,mTab /\A-   | Align on the 1st - in string (useful if there are multiple -)
+n,mTab /\A-   | Align on the 1st - in string (useful if there are multiple -'s)
 n,mTab /:\zs  | Align using the 1st character after the :, useful when you want
                 to keep the : with the preceding word but align everything after
                 i.e. "data:    value" instead of "data    : value"
@@ -263,7 +269,6 @@ vi}                      | Visually select everything inside {}
 
 # PLUGINS
 ## ctrl-p
-### ctrl-p commands
 ```
 <F5>   | Purge/refresh the cache for the current directory to get new files,
          remove deleted files and apply new ignore options
@@ -323,10 +328,10 @@ g?                  | Show available fugitive commands
 in the dos format are considered binary** by these tools and the fix is to
 convert them to unix format using a tool such as dos2unix (or vim).  dos2unix
 can be used to show if a file is in dos format by issuing the following
-command:  
-`dos2unix -ic *`  
+command:
+`dos2unix -ic *`
 Any text file listed is in dos format and needs to be converted so it can be
-searched.   
+searched.
 **IMPORTANT** Note: pt for whatever reason **does not support a wildcard in the
 path argument on Windows.**  For example, the following command will work on
 Windows:
@@ -355,7 +360,6 @@ v   | Open in vertical split
 gv  | Open in vertical split silently
 q   | Close the quickfix window
 ```
-## Ruby
 ## Surround
 Reference: https://vimeo.com/6093081
 ```
@@ -366,7 +370,7 @@ ysi<Motion>}  | Surround <motion> with {} without a space i.e. {word}
 yss)          | Wrap entire line in () with no space
 <Visual>S)    | Wrap visual selection in () with no space
 ```
-##  tcomment: Winner of comment plugin over nerdcommenter & vim-commentary
+## vim-commentary
 ```
 gc{motion}        | Comment or uncomment lines that {motion} moves over
 gcc               | Comment or uncomment [count] lines

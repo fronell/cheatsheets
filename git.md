@@ -5,6 +5,15 @@ git add .
 ## Create a commit
 git commit -m "Initial commit"
 
+## Create a commit with a multi-line message
+git commit -a
+Line 1
+Line 2
+EOF
+
+## Create a commit and use $EDITOR to enter message
+git commit
+
 ## Push to origin
 git push -u origin master
 
@@ -49,37 +58,6 @@ git reset --
 
 ## Unstage a specific file
 git reset <file>
-
-#Subtree
-## Add a subtree without adding the entire history of the sub project via squash
-(Must done at the top level of a _clean_ working directory)
-git subtree add --prefix vendor_cookbooks/yum https://github.com/opscode-cookbooks/yum master --squash
-
-## Update a subtree
-git subtree pull --prefix vendor_cookbooks/yum https://github.com/opscode-cookbooks/yum master --squash
-
-## Remove a subtree
-Since the subtree is treated as a merge commit, you just remove the directory
-the subtree was pulled down to like any other directory
-git rm -r <subtree_dir>
-
-#Submodules
-## Add a submodule, do a git add/commit after to add it to the repo
-git submodule add repo dest_dir
-git submodule add https://github.com/plasticboy/vim-markdown.git bundle/vim-markdown
-
-## Init and update a submodule after cloning
-git submodule update --init
-
-## To update a submodule, go into the local repo dir
-git pull origin master
-
-## Update all submodules
-git submodule foreach git pull origin master
-
-## Remove a submodule
-git submodule deinit asubmodule
-git rm asubmodule
 
 # Stashes
 ## Add all the changes
